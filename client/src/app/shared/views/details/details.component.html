@@ -1,0 +1,17 @@
+<div class="center">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <input placeholder="First Name" formControlName="firstName" />
+        <input placeholder="Last Name" formControlName="lastName" />
+        <input placeholder="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" />
+        <section class="example-section">
+            <mat-checkbox formControlName="allowDeviceCamera" class="example-margin">Allow Device Camera</mat-checkbox>
+            <mat-checkbox formControlName="allowDeviceLocation" class="example-margin">Allow Device Location</mat-checkbox>
+            <mat-checkbox (change)="privateModeClick($event)" #checked ng-model="checked" formControlName="allowPrivateMode" class="example-margin">Allow Private Mode</mat-checkbox>
+        </section>
+        <input  formControlName="privateModePassword" placeholder="private mode password" type="password" />
+        <div class="centeredText">
+            
+            <button class="btn" type="submit" amat-list-item routerLinkActive="list-item-active">Next</button>
+        </div>
+    </form>
+</div>

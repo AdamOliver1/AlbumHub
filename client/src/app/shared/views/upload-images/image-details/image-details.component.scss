@@ -1,0 +1,43 @@
+.flex {
+    margin-bottom: 100px;
+    gap: 100%;
+}
+.inline {
+    display: inline;
+}
+div > * {
+    margin: 15px 0;
+    display: inline;
+}
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+}
+
+.add:after{
+    content: "Add";
+}
+
+.update:after{
+    content: "Update";
+}
+
+#line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.categories {
+    width: 600px;
+}
+
+.star {
+    color: yellow;
+}

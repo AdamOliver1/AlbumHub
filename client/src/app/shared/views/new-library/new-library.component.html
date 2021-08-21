@@ -1,0 +1,17 @@
+<div class="center">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="centeredText">
+
+        <input id="libraryName" placeholder="Library Name" formControlName="libraryName" />
+        <input id="description" placeholder="Description" formControlName="description" />
+            <button mat-button class="btn" type="submit">
+                Create
+            </button>
+            <button mat-button class="btn" type="submit" router-link='/upload-image/camera'>
+                Next
+            </button>
+            <!-- <a class="btn" type="submit" amat-list-item 
+                >Create</a> -->
+        </div>
+    </form>
+</div>

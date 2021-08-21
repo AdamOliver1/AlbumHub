@@ -1,0 +1,19 @@
+ul li {
+    list-style: none;
+}
+
+mat-toolbar{
+color: white;
+   
+    background-color: blue;
+}
+a{
+    color: white;
+}
+mat-toolbar-row{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px;
+    gap: 20px;
+}

@@ -1,0 +1,60 @@
+.example-section {
+    margin: 12px 0;
+    
+}
+
+.example-margin {
+    margin: 0 12px;
+    
+}
+
+ul {
+    list-style-type: none;
+   
+}
+
+.center {
+    font-size: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+  
+}
+
+form{
+    font-size: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+}
+
+section > *:not(:last-child) {
+    display: block;
+    margin-bottom: calc(100% / 10);
+}
+
+div > *:not(:last-child) {
+    display: block;
+    margin-bottom: calc(100% / 20);
+}
+
+input{
+    width:500px;
+    font-size: calc(100% / 2);
+}
+.centeredText{
+    text-align: center;
+}
+
+a{
+    
+    
+    
+}
+

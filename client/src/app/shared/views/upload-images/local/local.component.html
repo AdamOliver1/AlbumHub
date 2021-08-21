@@ -1,0 +1,22 @@
+
+
+
+<div id="app">
+<div >
+
+    <div class="title">Pick Your Image:</div>
+    <div class="title" style="color:red;" *ngIf="message">{{message}}</div>
+    <div>
+        
+        <input #file type="file" accept='image/*' (change)="preview(file.files)" />  
+
+    </div>
+</div>
+    
+<ul>
+    <li *ngFor="let img of imagesURL">
+        <img src="{{ img }}" [width]="WIDTHimgGallary" [height]="HEIGHTimgGallary" (click)="uploadImage(img)" />
+    </li>
+</ul>
+</div>
+

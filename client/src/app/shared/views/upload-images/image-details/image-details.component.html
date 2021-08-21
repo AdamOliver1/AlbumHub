@@ -1,0 +1,64 @@
+<mat-card>
+    <mat-card-title>Upload Your Image</mat-card-title>
+    <mat-card-subtitle>
+        Fill The Details
+    </mat-card-subtitle>
+
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        
+        <div class="inline">
+            <input placeholder="Caption" formControlName="caption">
+
+            <div *ngIf="caption.invalid && (caption.dirty || caption.touched)"
+            class="alert alert-danger">
+        
+          <div *ngIf="caption.errors?.required">
+            Name is required.
+          </div>
+          <div *ngIf="caption.errors?.maxlength">
+           Caption must be up to 20 letters
+          </div>
+         
+        </div>
+
+            <mat-form-field appearance="fill" class="inline">
+                <mat-label>Categories</mat-label>
+                <mat-select  multiple [formControl]="categories">
+                    <mat-select-trigger>
+                        {{categories.value ? categories.value[0] : ''}}
+                        <span *ngIf="categories.value?.length > 1" class="example-additional-selection">
+                            (+{{categories.value.length - 1}} {{categories.value?.length === 2 ? 'other' :
+                            'others'}})
+                        </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let category of allCategories" [value]="category">{{category}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" class="inline">
+                <mat-label>Libraries</mat-label>
+                <mat-select [disabled]="isUpdate" [formControl]="library">
+                    <mat-select-trigger>
+                        {{library.value ? library.value : ''}}                     
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let library of allLibraries" [value]="library.library">{{library.library}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <img #img mat-card-image src="{{imgSrc}}" />
+            <span id=line>
+                <span>
+                    <mat-icon id="star" (click)="starClick()">star</mat-icon>
+                    Add To Favorites!
+                </span>
+                <button id="btn" class="button" type="submit"><span></span></button>
+                <mat-slide-toggle id="toggle" [checked]="isPrivateModeChecked" (change)="toggle($event)">Private Mode</mat-slide-toggle>
+
+            </span>
+        </div>
+
+
+    </form>
+
+
+   
+</mat-card>

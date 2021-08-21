@@ -1,0 +1,14 @@
+<div id="app">
+    <div><video #video id="video" [width]="WIDTH" [height]="HEIGHT" autoplay></video></div>
+    <button  id="snap" class="btn btn-primary" (click)="capture()">
+        Snap Photo
+    </button>   
+    <canvas #canvas id="canvas" [width]="WIDTH" [height]="HEIGHT"></canvas>
+    <ul>
+        <li *ngFor="let c of captures">
+            
+            <img src="{{ c }}" [width]="WIDTHimgGallary" [height]="HEIGHTimgGallary" (click)="uploadImage(c)" />
+        </li>
+    </ul>
+</div>
+

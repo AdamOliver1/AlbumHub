@@ -1,0 +1,48 @@
+@use "@material/image-list/mdc-image-list";
+
+@use "@material/image-list";
+
+.my-image-list {
+  @include image-list.standard-columns(5);
+}
+
+.imgContainer{
+  max-height: 70px;
+  margin-bottom: 20%;
+}
+
+.editButton{
+  width: 50%;
+  position: absolute;
+ 
+}
+
+.deleteButton{
+  width: 50%;
+  position: absolute;
+  right: 0%;
+}
+
+.formFilter{
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.formFilter > * {
+  
+  text-align: center;
+  margin: 5px;
+}
+
+.buttons{
+  background-color: brown;
+}
+
+.btnFavorites{
+  margin: 2%;
+}
+
+.flex{
+  display: flex;
+}

@@ -1,0 +1,23 @@
+.center {
+  font-size: calc(45px);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn {
+  
+}
+
+.none{
+  display: none;
+}
+
+div > *:not(:last-child) {
+  display: block;
+  margin-bottom: calc(100% / 5);
+}

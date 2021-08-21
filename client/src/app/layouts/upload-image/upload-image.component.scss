@@ -1,0 +1,30 @@
+
+
+.bottom {
+    font-size: 70px;
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+  
+}
+
+
+div > *:not(:last-child) {
+    display: block;
+     margin-bottom: calc(100% / 15 );
+}
+
+input{
+    width:500px;
+    font-size: xx-large;
+}
+.centeredText{
+    text-align: center;
+}
+
+a{
+   
+}

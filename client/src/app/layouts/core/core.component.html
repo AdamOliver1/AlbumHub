@@ -1,0 +1,13 @@
+<app-header (toggleSidbarForme)="sideBarToggle()"></app-header>
+
+<mat-drawer-container class="core">
+    <mat-drawer mode="side" [opened]="sideBarOpen">
+        <app-side-bar></app-side-bar>
+        
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<app-footer></app-footer>
