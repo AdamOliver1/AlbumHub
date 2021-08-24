@@ -10,13 +10,17 @@ import {OnlineComponent} from './shared/views/upload-images/online/online.compon
 import {UploadImageComponent} from './layouts/upload-image/upload-image.component';
 import {LibraryComponent} from './shared/views/library/library.component';
 import { PrivateModeComponent } from './shared/views/private-mode/private-mode.component';
+import { AboutComponent } from './shared/views/about/about.component';
+import { SlideShowComponent } from './shared/views/slide-show/slide-show.component';
 const routes: Routes = [
   {path:'',component:CoreComponent,children:[
   {path:'',component:WelcomeComponent},
   {path:'details',component:DetailsComponent},
   {path:'new-library',component:NewLibraryComponent},
   {path:'library',component:LibraryComponent},
+  {path:'slide-show',component:SlideShowComponent},
   {path:'private',component:PrivateModeComponent},
+  {path:'about',component:AboutComponent},
   {path:'upload-image',component:UploadImageComponent,children:[
     {path:'camera',component:CameraComponent},
     {path:'local',component:LocalComponent},

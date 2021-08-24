@@ -1,41 +1,46 @@
-const { userApi } = require('../config');
+const { userApi, usersDbPath } = require('../config');
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const jsonService = require('../services/jsonService')
 router.use(cors());
 
+//sign up new user
 router.post(`${userApi}/signup`, async (req, res) => {
-    const salt = await bcrypt.genSalt();
-    console.log(req.body);
-    let user = req.body.user;
-    user.privateModePassword = await bcrypt.hash(user.privateModePassword, salt);
-    let data = JSON.stringify(user);
-    fs.writeFileSync('DB/user.json', data);
-})
-
-router.post(`${userApi}/validate`, async (req, res) => {
-    console.log("req.body", req.body);
-    let password = req.body.password;
-    let user = JSON.parse(fs.readFileSync('DB/user.json'));
-    console.log("user.privateModePassword",user.privateModePassword);
-  const isValid =   await bcrypt.compare(password, user.privateModePassword);
-  console.log("isValid",isValid);
-    res.send(isValid);
-})
-
-router.get(`${userApi}/user-exist`, (req, res) => {
-    console.log("innnn");
-    let data = fs.readFileSync('DB/user.json');
     try {
-        let user = JSON.parse(data);
-    }
-    catch (e) {
-        res.send(false);
-        return;
-    }
-    res.send(true);
+        const salt = await bcrypt.genSalt();
+        let user = req.body.user;
+        if (user.privateModePassword) user.privateModePassword = await bcrypt.hash(user.privateModePassword, salt);
+        fs.writeFileSync(usersDbPath, JSON.stringify(user));
+        res.status(200).send();
+    } catch (err) { jsonService.logError(err); }
+})
+
+//check private mode password
+router.post(`${userApi}/validate`, async (req, res, next) => {
+    try {
+        let user = JSON.parse(fs.readFileSync(usersDbPath));
+        if (!user.privateModePassword) res.send(false);
+        else {
+            const isValid = await bcrypt.compare(req.body.password, user.privateModePassword);
+            res.send(isValid);
+        }
+    } catch (err) { jsonService.logError(err); }
+})
+
+//check if user exist
+router.get(`${userApi}/user-exist`, (req, res) => {
+    try {
+        let data = fs.readFileSync(usersDbPath);
+        let user;
+        try {
+            user = JSON.parse(data);
+            res.send(user);
+        }
+        catch (e) { res.send(false); }
+    } catch (err) { jsonService.logError(err); }
 })
 
 module.exports = router;

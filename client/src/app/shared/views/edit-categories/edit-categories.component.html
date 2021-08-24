@@ -1,0 +1,53 @@
+<div class="center">
+    <div class="title">Add Categories</div>
+    <form class="form" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>New Category</mat-label>
+            <input matInput type="text" placeholder="Enter new Category" [formControl]="newCategory" />
+        </mat-form-field>
+        <button mat-raised-button color="primary">Add</button>
+    </form>
+
+    <div class="images">
+        <mat-label>Open And Click To Delete Category</mat-label>
+        <br/>
+        <br/>
+      
+        <mat-select class="select">
+            <mat-option *ngFor="let category of categories" [value]="category">
+                <div (click)="deleteCategory(category)">
+                    {{category}}
+                </div>
+            </mat-option>
+        </mat-select>
+
+
+    </div>
+
+</div>
+
+
+<!-- <div class="center">
+
+
+    <form class="form flex" (ngSubmit)="onSubmit()">
+        <div class="flex">
+
+            <button class="addBtn" mat-button type="submit">Add</button>
+            <div>
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>New Category</mat-label>
+                    <input matInput placeholder="Enter new Category" [formControl]="newCategory" value="Sushi">
+                </mat-form-field>
+            </div>
+           
+        </div>
+    </form>
+
+
+    <mat-list class="categories" *ngFor="let category of categories">
+        <mat-list-item class="category"> {{category}} </mat-list-item>
+    </mat-list>
+</div> -->

@@ -1,0 +1,21 @@
+@use "@material/image-list/mdc-image-list";
+
+@use "@material/image-list";
+
+.center { 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .my-image-list {
+    @include image-list.standard-columns(5);
+  }
+
+  .images{
+    margin: 100px;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    display: flex;
+    flex-direction: row;
+  }

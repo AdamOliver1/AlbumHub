@@ -1,17 +1,45 @@
 <div class="center">
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-        <input placeholder="First Name" formControlName="firstName" />
-        <input placeholder="Last Name" formControlName="lastName" />
-        <input placeholder="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" />
+
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input class="input" matInput placeholder="First Name" formControlName="firstName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input class="input" matInput placeholder="Last Name" formControlName="lastName" />
+        </mat-form-field>
+       
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input class="input" matInput placeholder="email" [ngClass]="{ 'is-invalid': submitted && form.email.errors }"
+                formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Template</mat-label>
+            <mat-select formControlName="template" class="input" [(value)]="selected">
+              <mat-option *ngFor="let t of templates" [value]="t">
+                {{t}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+       
         <section class="example-section">
             <mat-checkbox formControlName="allowDeviceCamera" class="example-margin">Allow Device Camera</mat-checkbox>
-            <mat-checkbox formControlName="allowDeviceLocation" class="example-margin">Allow Device Location</mat-checkbox>
-            <mat-checkbox (change)="privateModeClick($event)" #checked ng-model="checked" formControlName="allowPrivateMode" class="example-margin">Allow Private Mode</mat-checkbox>
+            <mat-checkbox formControlName="allowDeviceLocation" class="example-margin">Allow Device Location
+            </mat-checkbox>
+            <mat-checkbox (change)="privateModeClick($event)" #checked ng-model="checked"
+                formControlName="allowPrivateMode" class="example-margin">Allow Private Mode</mat-checkbox>
         </section>
-        <input  formControlName="privateModePassword" placeholder="private mode password" type="password" />
+
+        <input class="input private" matInput formControlName="privateModePassword" placeholder="private mode password"
+            type="password" />
         <div class="centeredText">
-            
-            <button class="btn" type="submit" amat-list-item routerLinkActive="list-item-active">Next</button>
+
+            <button mat-raised-button color="primary" class="btn" type="submit" amat-list-item
+                routerLinkActive="list-item-active">Next</button>
         </div>
     </form>
 </div>

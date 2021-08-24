@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ImageDialogServiceService} from '../../../../services/image-dialog-service/image-dialog-service.service';
+import {ImageDialogService} from '../../../../services/image-dialog-service/image-dialog.service';
 @Component({
   selector: 'app-local',
   templateUrl: './local.component.html',
@@ -8,7 +8,7 @@ import {ImageDialogServiceService} from '../../../../services/image-dialog-servi
 export class LocalComponent implements OnInit {
   WIDTHimgGallary = window.innerWidth / 6;
   HEIGHTimgGallary = window.innerHeight / 6;
-  constructor(private ImageDialogServiceService:ImageDialogServiceService) { }
+  constructor(private imageDialogService:ImageDialogService) { }
 
   ngOnInit(): void {
   }
@@ -16,17 +16,12 @@ export class LocalComponent implements OnInit {
   imagesURL: any[] = [];
   public message!: string;
 
-
   uploadImage(src:string){
-    this.ImageDialogServiceService.openSaveImageDialog(src); 
+    this.imageDialogService.openSaveImageDialog(src); 
   }
 
-
-
   preview(files: any) {
-    if (files.length === 0)
-      return;
-
+    if (files.length === 0)  return;  
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";

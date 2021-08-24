@@ -1,0 +1,35 @@
+@use "@material/image-list/mdc-image-list";
+
+@use "@material/image-list";
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+   
+}
+
+.form{
+margin:100px
+}
+
+.images {
+    font-size: 30px;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title{
+    font-family: bold;
+    font-size: 60px;
+}
+
+.select{
+    font-size: 25px;
+}

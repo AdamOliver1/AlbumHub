@@ -1,0 +1,31 @@
+.none {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+.mySlides {
+    display: none;
+}
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.caption {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 10vw;
+    margin-bottom: 5vw;
+}
+.btn{
+    font-size: 20px;
+    margin: 20px;
+}
+

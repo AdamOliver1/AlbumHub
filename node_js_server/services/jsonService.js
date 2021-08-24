@@ -1,60 +1,57 @@
-fs = require('fs')
-
-function updateInArray(array, updatedImg) {
-  for (var i in projects) {
-    if (projects[i].value == value) {
-      projects[i].desc = desc;
-      break; //Stop this loop, we found it!
-    }
-  }
-}
+const fs = require('fs')
+const { errorLoggerPath } = require('../config');
 
 const jsonService = {
 
- 
-
-
-  addToFile(path, newElement) {
-    fs.readFile(path, function (err, data) {
-      let json = JSON.parse(data);
-
-      json.array.push(newElement);
-      fs.writeFile(path, JSON.stringify(json), () => { })
-    });
-  },
-
-  updateImage(img) {
+  async logError(error) {
     try {
-      let path = 'DB/imageDetails.json';
-      fs.readFile(path, function (err, data) {
-        var json = JSON.parse(data);  
-        for (var i in json.array) {
-          if (json.array[i].fileName == img.fileName) {         
-            json.array[i] = {...img};        
-            break;
-          }
-        }
-        fs.writeFile(path, JSON.stringify(json), () => { })
+      if (error == null) return;
+      await fs.readFile(errorLoggerPath, async (err, data) => {
+        let json = JSON.parse(data);
+        json.array.push({
+          message: error?.message,
+          stack: error?.stack,
+          date: new Date()
+        });
+        await fs.writeFile(errorLoggerPath, JSON.stringify(json), () => { })
       });
-    } catch (err) {
-      console.log("err", err);
-    }
+    } catch (err) { console.error("error", error); }
   },
 
-  saveImageDetails(body) {
-    return new Promise((res, rej) => {
-      let data = {
-        fileName: body.fileName + '.png',
-        categories: body.categories,
-        isFavorite: body.isFavorite,
-        inPrivateMode: body.inPrivateMode,
-        library: body.library,
-        caption: body.caption
-      };
-      this.addToFile('DB/imageDetails.json', data)
-    })
+  async createFileIfNotExist(path, data = null) {
+    try {
+      await fs.exists(path, async (exists) => {
+        if (!exists && data) {
+          await fs.writeFileSync(path, JSON.stringify(data), err => {
+            if (err) logError(err);
+            res(false)
+          });
+        }
+      });
+    } catch (err) { logError(err); }
+  },
 
-  }
+  async removeFromFile(path, Element) {
+    try {
+      await fs.readFile(path, async (err, data) => {
+        if (err) logError(err);
+        let json = JSON.parse(data);
+        json.array = json.array.filter(e => e !== Element)
+        await fs.writeFile(path, JSON.stringify(json), () => { })
+      });
+    } catch (err) { logError(err); }
+  },
+
+  async addToFile(path, newElement) {
+    try {
+      await fs.readFile(path, async (err, data) => {
+        if (err) logError(err);
+        let json = JSON.parse(data);
+        json.array.push(newElement);
+        await fs.writeFile(path, JSON.stringify(json), () => { })
+      });
+    } catch (err) { logError(err); }
+  },
 }
 
 module.exports = jsonService;

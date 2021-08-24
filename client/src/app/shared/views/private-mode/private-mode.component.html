@@ -1,6 +1,6 @@
 <div class="center">
-    <form class="example-form" (ngSubmit)="onSubmit()" >
-        <mat-form-field class="example-full-width" appearance="fill">
+    <form class="form" (ngSubmit)="onSubmit()" >
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Password</mat-label>
           <input type="password" matInput [formControl]="passwordFormControl">       
           <mat-error *ngIf="passwordFormControl.hasError('required')">

@@ -3,7 +3,7 @@
     gap: 100%;
 }
 .inline {
-    display: inline;
+    // display: inline;
 }
 div > * {
     margin: 15px 0;
@@ -40,4 +40,39 @@ div > * {
 
 .star {
     color: yellow;
+  
 }
+
+#star{
+    cursor: pointer;
+}
+
+img {
+    width: 50%;
+    height: 50%;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 220px;
+}
+
+#btn{
+    width: 30px;
+    height: 20px;
+}
+.block{
+    display: block;
+}
+
+.loactionBtn{
+    margin-right: 100px;
+}
+// .img{
+//     position: fixed;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     align-items: center;
+//     justify-content: center;
+//     text-align: center;
+//     margin-right: 100px;
+// }

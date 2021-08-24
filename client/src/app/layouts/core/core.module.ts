@@ -5,15 +5,12 @@ import {FooterComponent} from '../../shared/layout-components/footer/footer.comp
 import { CoreComponent } from './core.component';
 import { MatDividerModule } from '@angular/material/divider';
 @NgModule({
-  declarations: [   
-    
-    
+  declarations: [     
     CoreComponent 
   ],
   imports: [
     CommonModule,
     SharedModule
-    
   ], 
   exports:[FooterComponent]
 })

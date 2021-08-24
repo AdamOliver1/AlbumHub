@@ -1,14 +1,21 @@
-<mat-card class="example-card">
+<mat-card class="card">
 
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{imageDetails.caption}}</mat-card-title>
   </mat-card-header>
-
-<div>
-
-  <img mat-card-image src="{{imageDetails.imgSrc}}" alt="image">
-</div>
+  <br/>
+ 
+  <div>
+    <div class="inCard star" *ngIf="imageDetails.isFavorite">
+      <mat-icon>star</mat-icon>
+    </div>
+    <div class="inCard padding lock" *ngIf="imageDetails.inPrivateMode">
+      <mat-icon>lock</mat-icon>
+    </div>
+    
+    <img mat-card-image src="{{imageDetails.imgSrc}}" alt="image">
+  </div>
+  
 
 
 
@@ -23,12 +30,7 @@
   <br />
 
 
-  <div class="inCard" *ngIf="imageDetails.isFavorite">
-    <mat-icon>star</mat-icon>
-  </div>
-  <div class="inCard padding lock" *ngIf="imageDetails.inPrivateMode">
-    <mat-icon>lock</mat-icon>
-  </div>
+  
 
 
 

@@ -1,1 +1,35 @@
-<p>online works!</p>
+<div class="center">
+    <h1>Photo Search</h1>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="search" placeholder="search here" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Amount Of Results</mat-label>
+        <input matInput type="number" [(ngModel)]="numberResults" max="100" placeholder="number of results" />
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" (click)="searchImages()">Search</button>
+    <div class="images">
+
+
+        <ul class="mdc-image-list my-image-list">
+            <li *ngFor="let img of images" class="mdc-image-list__item">
+                <div class="mdc-image-list__image-aspect-container">
+                    <div class="imgContainer">
+                        <div class="buttons" (click)="uploadImage(img.src.medium)">
+                            <img src="{{img.src.medium}}" (click)="uploadImage(img.src.medium)">
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- <ul *ngFor="let img of images">
+    <img src="{{img.src.medium}}" (click)="uploadImage(img.src.medium)">
+</ul> -->
+</div>

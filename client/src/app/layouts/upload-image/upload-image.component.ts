@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-upload-image',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-image.component.scss']
 })
 export class UploadImageComponent implements OnInit {
-
-  constructor() { }
+  isLibrary:boolean;
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.userService.isUserExict().then(user => {     
+       this.isLibrary = user?.template === 'List';
+    })
   }
-
 }

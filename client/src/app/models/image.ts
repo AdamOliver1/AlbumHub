@@ -1,3 +1,6 @@
+import { Library } from "./library";
+import { LocationCoords } from "./locationCoords";
+
 export class ImageDetails {
     imgSrc:string;
     fileName:string;
@@ -5,5 +8,6 @@ export class ImageDetails {
     categories:string[];
     isFavorite:boolean;
     inPrivateMode!:boolean;
-    // location:any;
+    library:Library;
+    location:LocationCoords;
 }

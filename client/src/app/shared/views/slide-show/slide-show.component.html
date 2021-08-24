@@ -1,0 +1,35 @@
+<div>
+
+    <button class="btn" mat-raised-button color="primary">
+        <a routerLink="/library">
+            Change To Library
+        </a>
+    </button>
+</div>
+<div>
+
+    <button (click)="random(true)" class="btn" mat-raised-button color="primary">
+        Stop Random
+    </button>
+</div>
+<div>
+
+    <button (click)="random(false)" class="btn" mat-raised-button color="primary">
+        Start Random
+    </button>
+</div>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="center">
+
+    <div *ngFor="let img of images">
+        <div class="mySlides" (click)="openDialog(img)">
+            <div class="caption">{{img.caption}}</div>
+            <img src="{{img.imgSrc}}">
+        </div>
+    </div>
+</div>
+<button class="w3-button w3-display-left" (click)="plusDivs(-1)">&#10094;</button>
+<button class="w3-button w3-display-right" (click)="plusDivs(+1)">&#10095;</button>

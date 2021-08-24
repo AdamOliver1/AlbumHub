@@ -4,22 +4,25 @@ const fs = require('fs');
 const cors = require('cors');
 router.use(cors());
 const jsonService = require('../services/jsonService');
+const { libraryApi, libraryDbPath } = require('../config');
 
-router.post('/add-library', (req, res) => {
-    let library = req.body.library;  
-    fs.mkdir(`./images/${library}`, (err) => {
-        if (err) console.log("err: ",err)
-        else console.log("good");
-    })   
-    jsonService.addToFile('DB/libraries.json',req.body);    
-    res.send("library creatred") 
+router.post(`${libraryApi}/add-library`, (req, res) => {
+    try {     
+        console.log("dddddd");
+        fs.mkdir(`./images/${req.body.library}`, jsonService.logError)   
+        jsonService.addToFile(libraryDbPath, req.body);
+        res.status(200).send();
+    } catch (err) { jsonService.logError(err); }
 })
 
-
-router.get('/libraries', (req, res) => {                 
-    fs.readFile('DB/libraries.json',  (err, data) => {  
-       res.send(JSON.parse(data).array);
-    })     
+//get all libraries
+router.get(`${libraryApi}/libraries`, (req, res) => {
+    try {     
+        fs.readFile(libraryDbPath, (err, data) => {
+            res.send(JSON.parse(data).array);
+            if(err) jsonService.logError(err);
+        })
+    } catch (err) { jsonService.logError(err); }
 })
 
 

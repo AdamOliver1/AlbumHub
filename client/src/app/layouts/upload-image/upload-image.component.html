@@ -5,6 +5,7 @@
             <router-outlet></router-outlet>
         </mat-drawer-content>
     
-    <a class="bottom" amat-list-item routerLinkActive="list-item-active" routerLink="/library">Done</a>
-    
+    <a class="bottom" *ngIf="isLibrary" amat-list-item routerLinkActive="list-item-active" routerLink="/library">Done</a>
+    <a class="bottom" *ngIf="!isLibrary" amat-list-item routerLinkActive="list-item-active" routerLink="/slide-show">Done</a>
+   
 </div>

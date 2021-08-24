@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import {ImageDetailsComponent} from '../image-details/image-details.component';
 import {MatDialogModule, MatDialog,MatDialogConfig } from '@angular/material/dialog';
 // import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ImageDialogServiceService} from '../../../../services/image-dialog-service/image-dialog-service.service';
+import {ImageDialogService} from '../../../../services/image-dialog-service/image-dialog.service';
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
@@ -12,11 +12,9 @@ import {ImageDialogServiceService} from '../../../../services/image-dialog-servi
 })
 export class CameraComponent implements AfterViewInit {
 
-  constructor(private ImageDialogServiceService:ImageDialogServiceService) { }
+  constructor(private imageDialogService:ImageDialogService) { }
   fileUploadForm!: FormGroup;
   fileInputLabel!: string;
-
-
   WIDTH = window.innerWidth / 2;
   HEIGHT = window.innerHeight / 2;
   WIDTHimgGallary = window.innerWidth / 6;
@@ -35,13 +33,12 @@ export class CameraComponent implements AfterViewInit {
     await this.setupDevices();
   }
 
-
-  uploadImage(src:string){
-    this.openDialog(src);  
+  clearImages(){
+    this.captures = []; 
   }
 
-  openDialog(src:string) {
-    this.ImageDialogServiceService.openSaveImageDialog(src);
+  uploadImage(src:string){
+    this.imageDialogService.openSaveImageDialog(src); 
   }
 
   async setupDevices() {
@@ -69,9 +66,6 @@ export class CameraComponent implements AfterViewInit {
     let url = this.canvas.nativeElement.toDataURL("image/png");
     this.captures.push(url);
     this.isCaptured = true;
-   
-
-   
     if (this.captures.length > 4) {
       let btn = <HTMLInputElement>document.getElementById('snap');
       if (btn) {
@@ -87,8 +81,6 @@ export class CameraComponent implements AfterViewInit {
   }
 
   setPhoto(idx: number) {
-    console.log('setPhoto');
-
     this.isCaptured = true;
     var image = new Image();
     image.src = this.captures[idx];
@@ -99,9 +91,6 @@ export class CameraComponent implements AfterViewInit {
     this.canvas.nativeElement
       .getContext("2d")
       .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
-
   }
-
-
 }
 

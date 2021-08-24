@@ -8,26 +8,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ErrorPageComponent implements OnInit {
   err = "\err";
+
   constructor(
     private MdDialogRef: MatDialogRef<ErrorPageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.err = data;
-    console.log("datadata", data);
-
   }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.MdDialogRef.close();
     },1700)
-  }
-
-   close() {
-    console.log("closee");
-
-     this.MdDialogRef.close("");
-    console.log("afterrrr");
-
   }
 }

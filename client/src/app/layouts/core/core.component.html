@@ -2,12 +2,17 @@
 
 <mat-drawer-container class="core">
     <mat-drawer mode="side" [opened]="sideBarOpen">
-        <app-side-bar></app-side-bar>
-        
+        <app-side-bar [toggle]="sideBarToggle"></app-side-bar>
+
     </mat-drawer>
     <mat-drawer-content>
         <router-outlet></router-outlet>
     </mat-drawer-content>
+    <div>
+        <mat-icon>
+            person
+        </mat-icon>
+    </div>
 </mat-drawer-container>
 
 <app-footer></app-footer>

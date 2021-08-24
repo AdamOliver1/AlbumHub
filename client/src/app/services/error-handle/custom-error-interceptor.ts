@@ -1,18 +1,15 @@
 import { ErrorHandler, Injectable } from "@angular/core";
-import { ImageDialogServiceService } from "../image-dialog-service/image-dialog-service.service";
+import { ImageDialogService } from "../image-dialog-service/image-dialog.service";
 
 @Injectable()
 export class CustomErrorInterceptor implements ErrorHandler {
-    constructor(
-        //   private loggerService: LoggerService,
-        private dialogService: ImageDialogServiceService,
-        
+    constructor(  
+      private dialogService: ImageDialogService   
     ) { }
 
     handleError(error: any) {
-      
-        // next show a friendly message
-        this.dialogService.openErrorPageDialog("An Error Has Been Detected");
-
+      console.log("error",error);  
+        // show a friendly message
+        this.dialogService.openErrorPageDialog("An Error Has Been Detected" +  error?.message);
     }
 }

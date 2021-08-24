@@ -1,57 +1,64 @@
 <mat-nav-list>
-    <!-- <div class="profile-card">
-        <div class="header">
-            <h2>Gal Finger</h2>
-            <H4>galfinger1@gmail.com</H4>
-        </div>
-        <img src="https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.18169-9/13417490_1468387133187504_2929150338096850332_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=dYrjFHQyw20AX_agsmk&_nc_ht=scontent.fsdv3-1.fna&oh=87d92edbef585facfe4559b7114b5c3b&oe=60CAAFA4"
-            alt="Gal Finger">
-    </div>
-    <mat-divider></mat-divider> -->
-    
     <h2 matSubheader>Pages</h2>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>
-           home
-        </mat-icon>
-        Home
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/upload-image/camera">
-        <mat-icon>
-           image
-        </mat-icon>
-        Save Image
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/private">
-        <mat-icon>
-            security
-        </mat-icon>
-        Private
-    </a>
-  
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/new-library">
-        <mat-icon>
-            fiber_new
-        </mat-icon>
-       Create New Library
-    </a>
-    
-  
+    <div *ngIf="userExist">
 
-    <mat-divider></mat-divider>
+        <a (click)="toggleSideBar()" mat-list-item routerLinkActive="list-item-active" routerLink="/">
+            <mat-icon>
+                home
+            </mat-icon>
+            Home
+        </a>
+        <a *ngIf="isLibrary" mat-list-item routerLinkActive="list-item-active" routerLink="/library">
+            <mat-icon>
+                collections
+            </mat-icon>
+            Pictures
+        </a>
+        <a *ngIf="!isLibrary" (click)="toggleSideBar()" mat-list-item routerLinkActive="list-item-active" routerLink="/slide-show">
+            <mat-icon>
+                image
+            </mat-icon>
+            Pictures
+        </a>
+        <a  mat-list-item routerLinkActive="list-item-active" routerLink="/upload-image/camera">
+            <mat-icon>
+                image
+            </mat-icon>
+            New Picture
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" (click)="openCategoriesDialog()">
+            <mat-icon>
+                edit
+            </mat-icon>
+            Edit Categories
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/private">
+            <mat-icon>
+                security
+            </mat-icon>
+            Enter/Exit Private Mode
+        </a>
+       
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/about">
+            <mat-icon>
+                bookmark
+            </mat-icon>
+            About
+        </a>
 
-    <!-- <h2 matSubheader>Tools</h2>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
-        <mat-icon>
-            import_contacts
-        </mat-icon>
-        Contacts
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
-        <mat-icon>
-            contact_phone
-        </mat-icon>
-        Leads
-    </a> -->
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/new-library">
+            <mat-icon>
+                fiber_new
+            </mat-icon>
+            Create New Library
+        </a>
+        <a mat-list-item routerLinkActive="list-item-active" [state]="{data:true}" (click)="setRandom()" routerLink="/slide-show">
+            <mat-icon>
+                play_arrow
+            </mat-icon>
+            Start Random Slideshow
+        </a>
+        <mat-divider></mat-divider>
 
-</mat-nav-list> 
+    </div>
+</mat-nav-list>

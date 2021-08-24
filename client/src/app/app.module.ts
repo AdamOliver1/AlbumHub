@@ -7,7 +7,8 @@ import {SharedModule} from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploadImageComponent } from './layouts/upload-image/upload-image.component';
 import { CommonModule } from '@angular/common';
-import {ImageDialogServiceService} from './services/image-dialog-service/image-dialog-service.service';
+import {ImageDialogService} from './services/image-dialog-service/image-dialog.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,7 @@ import {ImageDialogServiceService} from './services/image-dialog-service/image-d
     SharedModule,
     BrowserAnimationsModule
   ], 
-  providers: [ImageDialogServiceService],
+  providers: [ImageDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
