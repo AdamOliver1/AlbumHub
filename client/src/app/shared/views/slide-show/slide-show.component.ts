@@ -21,10 +21,11 @@ export class SlideShowComponent implements OnInit, OnDestroy {
     private imageService: ImageService,
     private libraryService: LibraryService,
     private imageDialogService: ImageDialogService,
-  ) {
+  ) {  }
 
-  }
-  ngOnDestroy(): void {
+  
+  ngOnDestroy(): void { 
+    
     clearInterval(this.interval);
     sessionStorage.removeItem('random');
   }
