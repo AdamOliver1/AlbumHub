@@ -13,7 +13,7 @@ export class UploadImageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.isUserExict().then(user => {     
+    this.userService.getUser().then(user => {     
        this.isLibrary = user?.template === 'List';
     })
   }

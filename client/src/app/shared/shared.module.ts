@@ -93,10 +93,10 @@ const material = [
   ],
   providers: [
 
-    {
-      provide: ErrorHandler,
-      useClass: CustomErrorInterceptor
-    },
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: CustomErrorInterceptor
+    // },
     ImageDialogService
 
   ],

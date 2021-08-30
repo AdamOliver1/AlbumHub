@@ -18,7 +18,7 @@ export class SideBarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.isUserExict().then(user => {
+    this.userService.getUser().then(user => {
       this.userExist = user      
        this.isLibrary = user?.template === 'List';
     })  

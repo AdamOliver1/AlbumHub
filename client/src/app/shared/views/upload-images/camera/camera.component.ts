@@ -1,10 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
-import { FormGroup, FormBuilder } from '@angular/forms';
-import {ImageDetailsComponent} from '../image-details/image-details.component';
-import {MatDialogModule, MatDialog,MatDialogConfig } from '@angular/material/dialog';
-// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ImageDialogService} from '../../../../services/image-dialog-service/image-dialog.service';
+import { FormGroup} from '@angular/forms';
+import { ImageDialogService } from '../../../../services/image-dialog-service/image-dialog.service';
+import { UserService } from "src/app/services/user-service/user.service";
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
@@ -12,13 +10,16 @@ import {ImageDialogService} from '../../../../services/image-dialog-service/imag
 })
 export class CameraComponent implements AfterViewInit {
 
-  constructor(private imageDialogService:ImageDialogService) { }
+  constructor(
+    private imageDialogService: ImageDialogService,
+    private userService: UserService
+  ) { }
   fileUploadForm!: FormGroup;
   fileInputLabel!: string;
   WIDTH = window.innerWidth / 2;
   HEIGHT = window.innerHeight / 2;
-  WIDTHimgGallary = window.innerWidth / 6;
-  HEIGHTimgGallary = window.innerHeight / 6;
+ 
+
   @ViewChild("video")
   public video!: ElementRef;
 
@@ -30,15 +31,17 @@ export class CameraComponent implements AfterViewInit {
   isCaptured: boolean = false;
 
   async ngAfterViewInit() {
-    await this.setupDevices();
+    this.userService.getUser().then(async user => {
+      if (user?.allowDeviceCamera) await this.setupDevices();
+    })
   }
 
-  clearImages(){
-    this.captures = []; 
+  clearImages() {
+    this.captures = [];
   }
 
-  uploadImage(src:string){
-    this.imageDialogService.openSaveImageDialog(src); 
+  uploadImage(src: string) {
+    this.imageDialogService.openSaveImageDialog(src);
   }
 
   async setupDevices() {

@@ -13,9 +13,9 @@ import { AlertsService } from '../../../services/alerts/alerts.service';
 export class DetailsComponent implements OnInit {
   submitted = false;
   isPrivte: boolean = false;
-  templates:string[];
-  selected:string;
-  isList:FormControl;
+  templates: string[];
+  selected: string;
+  isList: FormControl;
   checkoutForm: any;
   ngOnInit(): void {
     this.isList = new FormControl(true);
@@ -28,9 +28,9 @@ export class DetailsComponent implements OnInit {
     private alertsService: AlertsService
   ) {
     //default templates
-    this.templates = ['Grid','List'];
+    this.templates = ['Grid', 'List'];
     this.selected = this.templates[1];
-
+   
     this.checkoutForm = this.formBuilder.group({
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
@@ -39,9 +39,30 @@ export class DetailsComponent implements OnInit {
       allowDeviceLocation: false,
       allowPrivateMode: false,
       privateModePassword: null,
-      template:'List'
+      template: 'List'
     });
     this.checkoutForm.controls['privateModePassword'].disable();
+    
+
+    this.userService.getUser().then(user => {
+      console.log(user);
+
+     if(user){
+       console.log("userrr",user.firstName);      
+      this.checkoutForm.controls['firstName'].setValue(user.firstName);
+      this.checkoutForm.controls['lastName'].setValue(user.lastName);
+      this.checkoutForm.controls['email'].setValue(user.email);
+      this.checkoutForm.controls['allowDeviceCamera'].setValue(user.allowDeviceCamera);
+      this.checkoutForm.controls['allowDeviceLocation'].setValue(user.allowDeviceLocation);
+      this.checkoutForm.controls['firstName'].setValue(user.firstName);
+      this.checkoutForm.controls['firstName'].setValue(user.firstName);
+      this.checkoutForm.controls['allowPrivateMode'].setValue(user.allowPrivateMode);
+      this.checkoutForm.controls['template'].setValue(user.template);       
+     }
+
+
+    })
+
   }
 
   privateModeClick(event: MatCheckboxChange) {

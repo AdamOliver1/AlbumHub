@@ -36,8 +36,9 @@ export class ImageDetailsComponent implements OnInit {
     private MdDialogRef: MatDialogRef<ImageDetailsComponent>,
     private libraryService: LibraryService,
     private imageDialogService: ImageDialogService,
-    private imageService:ImageService,
-    private alertService:AlertsService,
+    private imageService: ImageService,
+    private alertService: AlertsService,
+    private userservice: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.location = new LocationCoords();
@@ -76,13 +77,22 @@ export class ImageDetailsComponent implements OnInit {
         this.checkoutForm.controls['inPrivateMode'].setValue(true);
       }
       this.checkoutForm.controls['location'].setValue(this.data?.location);
-      this.location = this.data?.location;   
+      this.location = this.data?.location;
     }
     else {
-      navigator.geolocation.getCurrentPosition(pos => {
-        this.location.lat = pos.coords.latitude;
-        this.location.lng = pos.coords.longitude;
+      this.userservice.getUser().then(user => {
+        if (user?.allowDeviceLocation){
+          navigator.geolocation.getCurrentPosition(pos => {
+            this.location.lat = pos.coords.latitude;
+            this.location.lng = pos.coords.longitude;
+          })
+        }
+        else {
+          this.location.lat = 0;
+          this.location.lng = 0;
+        }
       })
+    
     }
   }
 
@@ -105,7 +115,7 @@ export class ImageDetailsComponent implements OnInit {
 
   starClick() {
     const star = document.getElementById('star')
-    if (this.isFavorite)  star?.classList.remove('star');
+    if (this.isFavorite) star?.classList.remove('star');
     else star?.classList.add('star');
     this.isFavorite = !this.isFavorite;
     this.checkoutForm.controls['isFavorite'].setValue(this.isFavorite);
@@ -119,6 +129,6 @@ export class ImageDetailsComponent implements OnInit {
       this.alertService.alertWithSuccess(`image ${this.isUpdate ? "updated " : "saved "} seccesfully`);
       this.MdDialogRef.close();
     }
-    else this.alertService.alertWithSuccess(`${this.isUpdate ? "Update " : "Saving "} Failed`) 
+    else this.alertService.alertWithSuccess(`${this.isUpdate ? "Update " : "Saving "} Failed`)
   }
 }

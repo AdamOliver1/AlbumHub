@@ -26,13 +26,12 @@ export class PrivateModeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.isUserExict().then(user => {
+    this.userService.getUser().then(user => {
       this.isLibrary = user?.template === 'List';
     })
-    if (sessionStorage.getItem('privateMode')) {
-      console.log("onnnnnnnnnnnnnnn");
+    if (sessionStorage.getItem('privateMode')) {   
       sessionStorage.clear();
-      this.router.navigate(['/'], { state: { data: false } });
+      this.router.navigate(['/']);
     }
   }
 

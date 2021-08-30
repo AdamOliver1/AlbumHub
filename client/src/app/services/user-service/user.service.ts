@@ -16,7 +16,8 @@ export class UserService {
     return await this.httpClient.post('http://localhost:3000/users/validate', { password }).toPromise();
   }
 
-  async isUserExict(): Promise<any> {
+  async getUser(): Promise<any> {
     return await this.httpClient.get('http://localhost:3000/users/user-exist').toPromise();
   }
+
 }

@@ -1,5 +1,5 @@
 <div id="app">
-    <div><video #video id="video" [width]="WIDTH" [height]="HEIGHT" autoplay></video></div>
+    <div><video #video id="video"  autoplay></video></div>
     <button mat-raised-button color="primary" id="snap" class="btn btn-primary" (click)="capture()">
         Snap Photo
     </button> 
@@ -10,7 +10,7 @@
     <ul>
         <li *ngFor="let c of captures">
             
-            <img src="{{ c }}" [width]="WIDTHimgGallary" [height]="HEIGHTimgGallary" (click)="uploadImage(c)" />
+            <img src="{{ c }}" (click)="uploadImage(c)" />
         </li>
     </ul>
 </div>
